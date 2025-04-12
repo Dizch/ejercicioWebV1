@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Metadatos básicos -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gestión de Pacientes</title>
 
-  <!-- Bootstrap CSS -->
+  <!-- Estilos y recursos externos -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <!-- Estilos personalizados -->
   <style>
     :root {
       --main-color: #1e3a8a;
@@ -31,9 +29,16 @@
       background-color: #60a5fa !important;
       color: white;
     }
+
+    .error-message {
+      color: #dc3545;
+      font-size: 0.875rem;
+      display: none;
+    }
   </style>
 </head>
 <body class="bg-blue-100 text-gray-900">
+  <!-- Barra de navegación -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow p-3">
     <div class="container-fluid">
       <a class="navbar-brand flex items-center gap-2" href="#">
@@ -53,13 +58,13 @@
   <div id="carouselMedico" class="carousel slide mt-3 container shadow rounded" data-bs-ride="carousel">
     <div class="carousel-inner rounded">
       <div class="carousel-item active">
-        <img src="https://images.unsplash.com/photo-1588776814546-ec7e5dc15275?auto=format&fit=crop&w=1350&q=80" class="d-block w-100" alt="doctor 1">
+        <img src="https://images.unsplash.com/photo-1588776814546-ec7e5dc15275?auto=format&fit=crop&w=1350&q=80" class="d-block w-100" alt="Doctor atendiendo a un paciente">
       </div>
       <div class="carousel-item">
-        <img src="https://images.unsplash.com/photo-1588776815374-bb19b87491df?auto=format&fit=crop&w=1350&q=80" class="d-block w-100" alt="doctor 2">
+        <img src="https://images.unsplash.com/photo-1588776815374-bb19b87491df?auto=format&fit=crop&w=1350&q=80" class="d-block w-100" alt="Equipo médico">
       </div>
       <div class="carousel-item">
-        <img src="https://images.unsplash.com/photo-1584467735871-5f6d7fbf02a2?auto=format&fit=crop&w=1350&q=80" class="d-block w-100" alt="hospital">
+        <img src="https://images.unsplash.com/photo-1584467735871-5f6d7fbf02a2?auto=format&fit=crop&w=1350&q=80" class="d-block w-100" alt="Hospital moderno">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselMedico" data-bs-slide="prev">
@@ -72,20 +77,26 @@
     </button>
   </div>
 
+  <!-- Formulario de registro de pacientes -->
   <div class="container mt-5 bg-white p-5 shadow rounded">
     <h2 class="text-2xl font-semibold mb-4 text-blue-900">Registro de paciente y cita</h2>
 
     <form class="row g-4" id="formCita">
+      <!-- Campo: Nombre completo -->
       <div class="col-md-6">
-        <label class="form-label">Nombre completo <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="nombre" required>
+        <label class="form-label" for="nombre">Nombre completo <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="nombre" required aria-describedby="errorNombre">
+        <div class="error-message text-danger" id="errorNombre">Este campo es obligatorio.</div>
       </div>
 
+      <!-- Campo: Edad -->
       <div class="col-md-2">
-        <label class="form-label">Edad <span class="text-danger">*</span></label>
-        <input type="number" class="form-control" id="edad" required>
+        <label class="form-label" for="edad">Edad <span class="text-danger">*</span></label>
+        <input type="number" class="form-control" id="edad" required aria-describedby="errorEdad">
+        <div class="error-message text-danger" id="errorEdad">Este campo es obligatorio.</div>
       </div>
 
+      <!-- Campo: Sexo -->
       <div class="col-md-4">
         <label class="form-label">Sexo</label>
         <select class="form-select">
@@ -95,51 +106,77 @@
         </select>
       </div>
 
+      <!-- Campo: Tipo de sangre -->
       <div class="col-md-4">
-        <label class="form-label">Tipo de sangre <span class="text-danger">*</span></label>
-        <select class="form-select" id="sangre" required>
+        <label class="form-label" for="sangre">Tipo de sangre <span class="text-danger">*</span></label>
+        <select class="form-select" id="sangre" required aria-describedby="errorSangre">
           <option value="">Seleccione</option>
-          <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
-          <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+          <option>A+</option>
+          <option>A-</option>
+          <option>B+</option>
+          <option>B-</option>
+          <option>AB+</></option>
+          <option>AB-</option>
+          <option>O+</option>
+          <option>O-</option>
         </select>
+        <div class="error-message text-danger" id="errorSangre">Este campo es obligatorio.</div>
       </div>
 
+      <!-- Campo: Ocupación -->
       <div class="col-md-4">
         <label class="form-label">Ocupación</label>
         <input type="text" class="form-control">
       </div>
 
+      <!-- Campo: Estado civil -->
       <div class="col-md-4">
         <label class="form-label">Estado civil</label>
         <select class="form-select">
-          <option>Soltero/a</option><option>Casado/a</option><option>Divorciado/a</option><option>Viudo/a</option>
+          <option>Soltero/a</option>
+          <option>Casado/a</option>
+          <option>Divorciado/a</option>
+          <option>Viudo/a</option>
         </select>
       </div>
 
+      <!-- Campo: Número de contacto -->
       <div class="col-md-6">
         <label class="form-label">Número de contacto</label>
         <input type="tel" class="form-control" pattern="[0-9]*">
       </div>
 
+      <!-- Campo: Correo electrónico -->
       <div class="col-md-6">
         <label class="form-label">Correo electrónico</label>
         <input type="email" class="form-control">
       </div>
 
+      <!-- Campo: Motivo de la cita -->
       <div class="col-12">
         <label class="form-label">Motivo de la cita</label>
         <textarea class="form-control" rows="2"></textarea>
       </div>
 
+      <!-- Campo: Tipo de enfermedad -->
       <div class="col-md-6">
         <label class="form-label">Tipo de enfermedad</label>
         <select class="form-select">
-          <option>Gripe</option><option>Diabetes</option><option>Hipertensión</option><option>Covid-19</option>
-          <option>Asma</option><option>Alergia</option><option>Dolor crónico</option>
-          <option>Infección urinaria</option><option>Problemas digestivos</option><option>Otro</option>
+          <option value="">Selecciona enfermedad</option>
+          <option>Gripe</option>
+          <option>Diabetes</option>
+          <option>Hipertensión</option>
+          <option>Covid-19</option>
+          <option>Asma</option>
+          <option>Alergia</option>
+          <option>Dolor crónico</option>
+          <option>Infección urinaria</option>
+          <option>Problemas digestivos</option>
+          <option>Otro</option>
         </select>
       </div>
 
+      <!-- Campo: Nivel de urgencia -->
       <div class="col-md-6">
         <label class="form-label">Nivel de urgencia</label>
         <select class="form-select" id="urgenciaSelect" onchange="cambiarColorUrgencia(this)">
@@ -150,65 +187,87 @@
         </select>
       </div>
 
+      <!-- Campo: Fecha deseada -->
       <div class="col-md-6">
         <label class="form-label">Fecha deseada</label>
         <input type="date" class="form-control">
       </div>
 
+      <!-- Campo: Hora deseada -->
       <div class="col-md-6">
         <label class="form-label">Hora deseada</label>
         <input type="time" class="form-control">
       </div>
 
+      <!-- Campo: Tipo de atención -->
       <div class="col-md-12">
         <label class="form-label">Tipo de atención</label>
         <select class="form-select">
-          <option>Consulta general</option><option>Especialidad</option><option>Otra</option>
+          <option>Consulta general</option>
+          <option>Especialidad</option>
+          <option>Otra</option>
         </select>
       </div>
 
+      <!-- Botón de envío -->
       <div class="col-12 text-end">
         <button type="submit" class="btn btn-primary bg-blue-800 hover:bg-blue-700 border-0">Registrar cita</button>
       </div>
     </form>
   </div>
 
+  <!-- Pie de página -->
   <footer class="bg-white text-center text-sm text-gray-500 py-4 mt-10 shadow-inner">
     Clínica Salud Total © <span id="year"></span>. Todos los derechos reservados.
   </footer>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
   <script>
+    // Función para cambiar el color del nivel de urgencia
     function cambiarColorUrgencia(select) {
-      select.classList.remove("urgencia-bajo", "urgencia-medio", "urgencia-alto");
-      const valor = select.value;
-      if (valor === "bajo") {
-        select.classList.add("urgencia-bajo");
-      } else if (valor === "medio") {
-        select.classList.add("urgencia-medio");
-      } else if (valor === "alto") {
-        select.classList.add("urgencia-alto");
+      const clases = {
+        bajo: "urgencia-bajo",
+        medio: "urgencia-medio",
+        alto: "urgencia-alto",
+      };
+
+      select.className = "form-select"; // Restablece las clases base
+      if (clases[select.value]) {
+        select.classList.add(clases[select.value]);
       }
     }
 
+    // Función genérica para validar campos
+    function validarCampo(campo, errorId) {
+      if (!campo.value.trim()) {
+        document.getElementById(errorId).style.display = "block";
+        return false;
+      } else {
+        document.getElementById(errorId).style.display = "none";
+        return true;
+      }
+    }
+
+    // Configuración inicial al cargar la página
     document.addEventListener("DOMContentLoaded", () => {
       const urgenciaSelect = document.getElementById("urgenciaSelect");
       cambiarColorUrgencia(urgenciaSelect);
 
       const form = document.getElementById("formCita");
-      form.addEventListener("submit", function(event) {
-        const nombre = document.getElementById("nombre").value.trim();
-        const edad = document.getElementById("edad").value.trim();
-        const sangre = document.getElementById("sangre").value;
+      form.addEventListener("submit", function (event) {
+        let valid = true;
 
-        if (!nombre || !edad || !sangre) {
+        valid &= validarCampo(document.getElementById("nombre"), "errorNombre");
+        valid &= validarCampo(document.getElementById("edad"), "errorEdad");
+        valid &= validarCampo(document.getElementById("sangre"), "errorSangre");
+
+        if (!valid) {
           event.preventDefault();
-          alert("Por favor complete los campos obligatorios: Nombre, Edad y Tipo de sangre.");
         }
       });
 
-      // Set footer year
+      // Establecer el año actual en el pie de página
       document.getElementById("year").textContent = new Date().getFullYear();
     });
   </script>
