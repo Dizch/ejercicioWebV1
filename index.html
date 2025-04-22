@@ -59,6 +59,22 @@
       top: 50%;
       transform: translateY(-50%);
     }
+    .btn-clear {
+      background: none;
+      border: none;
+      color: #6c757d;
+      padding: 0;
+      font-size: 0.9rem;
+      text-decoration: underline;
+    }
+    .btn-clear:hover {
+      color: #5a6268;
+      text-decoration: none;
+    }
+    .btn-submit {
+      padding: 12px 24px;
+      font-size: 1.1rem;
+    }
   </style>
 </head>
 <body>
@@ -153,6 +169,23 @@
       const handleSelectTime = (time) => {
         setFormData(prev => ({ ...prev, time }));
         setShowTimeDropdown(false);
+      };
+
+      // Limpiar formulario
+      const handleClearForm = () => {
+        setFormData({
+          fullName: '',
+          email: '',
+          phone: '',
+          dob: '',
+          specialty: '',
+          doctor: '',
+          date: '',
+          time: '',
+          reason: '',
+          consent: false
+        });
+        setErrors({});
       };
 
       // Enviar formulario
@@ -370,8 +403,15 @@
                   </div>
                 </div>
 
-                <div className="d-grid gap-2 mt-5">
-                  <button type="submit" className="btn btn-primary btn-lg py-3">
+                <div className="d-flex justify-content-between align-items-center mt-5">
+                  <button 
+                    type="button" 
+                    className="btn-clear"
+                    onClick={handleClearForm}
+                  >
+                    <i className="fas fa-eraser me-1"></i>Limpiar formulario
+                  </button>
+                  <button type="submit" className="btn btn-primary btn-submit">
                     <i className="fas fa-paper-plane me-2"></i>Confirmar Cita
                   </button>
                 </div>
