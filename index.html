@@ -13,13 +13,22 @@
   <style>
     body {
       font-family: 'Montserrat', sans-serif;
-      background-color: #f8f9fa;
+      background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95)), 
+                  url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
     }
     .card {
       border-radius: 15px;
       overflow: hidden;
       max-width: 800px;
       margin: 20px auto;
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    .card-header {
+      background-color: #0d6efd;
+      border-bottom: none;
     }
     .invalid-feedback {
       display: none;
@@ -39,14 +48,16 @@
     .time-option:hover {
       background-color: #f8f9fa;
     }
-    .time-option.disabled {
-      color: #6c757d;
-      cursor: not-allowed;
-    }
     .form-label i {
       width: 20px;
       margin-right: 8px;
       color: #0d6efd;
+    }
+    .dropdown-toggle::after {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
     }
   </style>
 </head>
@@ -163,18 +174,18 @@
       };
 
       return (
-        <div className="container my-5">
-          <div className="card shadow">
-            <div className="card-header bg-primary text-white">
-              <h1 className="text-center">
+        <div className="container py-5">
+          <div className="card shadow-lg">
+            <div className="card-header text-white">
+              <h1 className="text-center m-0">
                 <i className="fas fa-calendar-check me-2"></i>Agendar Cita Médica
               </h1>
             </div>
             
-            <div className="card-body">
+            <div className="card-body p-4">
               <form onSubmit={handleSubmit}>
                 {/* Datos del Paciente */}
-                <h3 className="mb-4"><i className="fas fa-user me-2"></i>Datos del Paciente</h3>
+                <h3 className="mb-4 text-primary"><i className="fas fa-user me-2"></i>Datos del Paciente</h3>
                 <div className="row g-3">
                   <div className="col-md-6">
                     <label className="form-label">
@@ -236,7 +247,7 @@
                 </div>
 
                 {/* Datos de la Cita */}
-                <h3 className="mt-5 mb-4"><i className="fas fa-calendar-alt me-2"></i>Datos de la Cita</h3>
+                <h3 className="mt-5 mb-4 text-primary"><i className="fas fa-calendar-alt me-2"></i>Datos de la Cita</h3>
                 <div className="row g-3">
                   <div className="col-md-6">
                     <label className="form-label">
@@ -360,7 +371,7 @@
                 </div>
 
                 <div className="d-grid gap-2 mt-5">
-                  <button type="submit" className="btn btn-primary btn-lg">
+                  <button type="submit" className="btn btn-primary btn-lg py-3">
                     <i className="fas fa-paper-plane me-2"></i>Confirmar Cita
                   </button>
                 </div>
